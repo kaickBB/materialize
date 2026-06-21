@@ -126,57 +126,18 @@ h1, h2, h3 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* O gradiente agora é aplicado diretamente aqui para escurecer a imagem */
   background-blend-mode: overlay; 
-  background-color: rgba(11, 11, 13, 0.6); /* Ajuste a opacidade aqui para escurecer */
+  background-color: rgba(11, 11, 13, 0.6); 
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
-.parallax-caption {
-  z-index: 2;
-  text-align: center;
-  padding: 0 6%;
-}
-
-.hero-tag {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 14px;
-}
-
-.parallax-caption h1 {
-  color: var(--text);
-  font-size: clamp(40px, 8vw, 96px);
-  line-height: 1.05;
-  margin: 0;
-}
-
-.parallax-caption p {
-  color: var(--text-dim);
-  font-size: clamp(15px, 2vw, 19px);
-  max-width: 560px;
-  margin: 18px auto 0;
-}
-
 /* ===================== Sobre (index) ===================== */
 .sobre-section {
   padding: 96px 0 80px;
+  background: black;
 }
 
-.sobre-photo {
-  width: 220px;
-  height: 220px;
-  object-fit: cover;
-  border: 4px solid var(--surface-2);
-  box-shadow: 0 0 0 1px var(--line);
-  margin-bottom: 36px;
-}
 
 .sobre-text {
   max-width: 640px;
@@ -419,7 +380,6 @@ h1, h2, h3 {
 /* ===================== Footer ===================== */
 .kobra-footer {
   background: var(--bg);
-  border-top: 1px solid var(--line);
   padding: 48px 0 36px;
 }
 
