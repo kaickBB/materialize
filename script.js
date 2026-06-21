@@ -7,9 +7,6 @@
 =================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-
-  // Inicializa componentes comuns do Materialize, excluindo o parallax 
-  // para inicializá-lo manualmente com mais controle
   M.AutoInit();
 
   // Inicialização manual do Parallax com verificação de carregamento
@@ -21,34 +18,36 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ----------------------------------------------------------------
+/* ----------------------------------------------------------------
      1) ARTES — carrossel clássico
   ---------------------------------------------------------------- */
   const artesCarouselEl = document.getElementById('artesCarousel');
 
   if (artesCarouselEl) {
-    const carouselInstance = M.Carousel.init(artesCarouselEl, {
-      indicators: true,
-      duration: 300
+    // Colocamos dentro do evento 'load' para garantir que as imagens carregaram
+    // antes do Materialize calcular as dimensões.
+    window.addEventListener('load', () => {
+      const carouselInstance = M.Carousel.init(artesCarouselEl, {
+        indicators: true,
+        duration: 300
+      });
+
+      let carouselTimer = null;
+
+      const stopAutoplay = () => carouselTimer && clearInterval(carouselTimer);
+      const startAutoplay = () => {
+        stopAutoplay();
+        if (reducedMotion) return;
+        carouselTimer = setInterval(() => carouselInstance.next(), 3000); 
+      };
+
+      artesCarouselEl.addEventListener('mouseenter', stopAutoplay);
+      artesCarouselEl.addEventListener('mouseleave', startAutoplay);
+      artesCarouselEl.addEventListener('touchstart', stopAutoplay, {passive: true});
+      artesCarouselEl.addEventListener('touchend', startAutoplay, {passive: true});
+
+      startAutoplay();
     });
-
-    let carouselTimer = null;
-
-    const stopAutoplay = () => carouselTimer && clearInterval(carouselTimer);
-    const startAutoplay = () => {
-      stopAutoplay();
-      if (reducedMotion) return;
-      // ALTERADO: de 5000 para 3000 (3 segundos)
-      carouselTimer = setInterval(() => carouselInstance.next(), 3000); 
-    };
-
-    artesCarouselEl.addEventListener('mouseenter', stopAutoplay);
-    artesCarouselEl.addEventListener('mouseleave', startAutoplay);
-    artesCarouselEl.addEventListener('focusin', stopAutoplay);
-    artesCarouselEl.addEventListener('focusout', startAutoplay);
-
-    startAutoplay();
   }
 
   /* ----------------------------------------------------------------
