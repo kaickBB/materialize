@@ -118,32 +118,24 @@ h1, h2, h3 {
 }
 
 /* ===================== Parallax (index) ===================== */
-.kobra-parallax.parallax-container {
-  height: 92vh;
+.kobra-container {
+  height: 93vh;
   min-height: 520px;
-  background: var(--bg);
-}
-
-.kobra-parallax .parallax img {
-  filter: saturate(1.05) contrast(1.02);
-}
-
-.kobra-parallax.parallax-container::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(11,11,13,.55) 0%, rgba(11,11,13,.25) 45%, rgba(11,11,13,.88) 100%);
-  pointer-events: none;
+  position: relative;
+  background-image: url('./pic/coverIMG.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* O gradiente agora é aplicado diretamente aqui para escurecer a imagem */
+  background-blend-mode: overlay; 
+  background-color: rgba(11, 11, 13, 0.6); /* Ajuste a opacidade aqui para escurecer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .parallax-caption {
-  position: absolute;
-  inset: 0;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
   padding: 0 6%;
 }
@@ -162,13 +154,14 @@ h1, h2, h3 {
   color: var(--text);
   font-size: clamp(40px, 8vw, 96px);
   line-height: 1.05;
+  margin: 0;
 }
 
 .parallax-caption p {
   color: var(--text-dim);
   font-size: clamp(15px, 2vw, 19px);
   max-width: 560px;
-  margin: 18px 0 0;
+  margin: 18px auto 0;
 }
 
 /* ===================== Sobre (index) ===================== */

@@ -1,22 +1,29 @@
 /* ===================================================================
    EDUARDO KOBRA — script.js
-   - index.html  : inicializa o parallax (via M.AutoInit) e tooltips
+   - index.html  : inicializa o parallax (via M.Parallax.init) e tooltips
    - artes.html  : controla o carrossel clássico do Materialize
-                   (autoplay a cada 5s) e o pagination "Impactando
-                   o mundo", que troca a galeria conforme o país
+                    (autoplay a cada 5s) e o pagination "Impactando
+                    o mundo", que troca a galeria conforme o país
 =================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Inicializa os componentes padrão do Materialize presentes na página
-  // (sidenav, tooltip, parallax, etc.)
+  // Inicializa componentes comuns do Materialize, excluindo o parallax 
+  // para inicializá-lo manualmente com mais controle
   M.AutoInit();
+
+  // Inicialização manual do Parallax com verificação de carregamento
+  const parallaxElems = document.querySelectorAll('.parallax');
+  if (parallaxElems.length > 0) {
+    window.addEventListener('load', () => {
+      M.Parallax.init(parallaxElems);
+    });
+  }
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ----------------------------------------------------------------
-     1) ARTES — carrossel clássico (efeito padrão do Materialize:
-        item central grande e claro, itens laterais menores e escuros)
+     1) ARTES — carrossel clássico
   ---------------------------------------------------------------- */
   const artesCarouselEl = document.getElementById('artesCarousel');
 
@@ -24,8 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const carouselInstance = M.Carousel.init(artesCarouselEl, {
       indicators: true,
       duration: 300
-      // fullWidth fica false (padrão) -> mantém o efeito de profundidade
-      // (escala + opacidade) nos itens que não estão no centro.
     });
 
     let carouselTimer = null;
@@ -163,7 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
       renderPagination();
     }
 
-    // primeira renderização
     renderHeader(countries[currentIndex]);
     renderGallery(countries[currentIndex]);
     renderPagination();
