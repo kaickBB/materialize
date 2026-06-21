@@ -435,3 +435,19 @@ h1, h2, h3 {
   color: var(--text-dim);
   margin: 0;
 }
+/* galeria do pagination */
+
+.col.s12 .kobra-card .card-image {
+  height: 600px;
+}
+
+.col.m6 .kobra-card .card-image {
+  height: 380px; 
+}
+
+@media (max-width: 600px) {
+  .col.s12 .kobra-card .card-image,
+  .col.m6 .kobra-card .card-image {
+    height: 300px;
+  }
+}

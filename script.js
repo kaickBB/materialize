@@ -110,15 +110,20 @@ document.addEventListener('DOMContentLoaded', () => {
       galleryEl.classList.remove('is-visible');
 
       const update = () => {
-        galleryEl.innerHTML = country.images.map(img => `
-          <div class="col s12 m6 l4">
-            <div class="card kobra-card">
-              <div class="card-image">
-                <img src="${img.src}" class="materialboxed" data-caption="${img.caption}" alt="${img.caption}" loading="lazy">
+        galleryEl.innerHTML = country.images.map((img, index) => {
+          // Define a classe de coluna baseada no padrão (1 inteira, 2 metades)
+          const colClass = (index % 3 === 0) ? 'col s12' : 'col s12 m6';
+
+          return `
+            <div class="${colClass}">
+              <div class="card kobra-card">
+                <div class="card-image">
+                  <img src="${img.src}" class="materialboxed" data-caption="${img.caption}" alt="${img.caption}" loading="lazy">
+                </div>
               </div>
             </div>
-          </div>
-        `).join('');
+          `;
+        }).join('');
 
         M.Materialbox.init(galleryEl.querySelectorAll('.materialboxed'));
         galleryEl.classList.add('is-visible');
