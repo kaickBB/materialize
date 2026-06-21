@@ -2,7 +2,7 @@
    EDUARDO KOBRA — script.js
    - index.html  : inicializa o parallax (via M.Parallax.init) e tooltips
    - artes.html  : controla o carrossel clássico do Materialize
-                    (autoplay a cada 5s) e o pagination "Impactando
+                    (autoplay a cada 3s) e o pagination "Impactando
                     o mundo", que troca a galeria conforme o país
 =================================================================== */
 
@@ -39,7 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const startAutoplay = () => {
       stopAutoplay();
       if (reducedMotion) return;
-      carouselTimer = setInterval(() => carouselInstance.next(), 5000);
+      // ALTERADO: de 5000 para 3000 (3 segundos)
+      carouselTimer = setInterval(() => carouselInstance.next(), 3000); 
     };
 
     artesCarouselEl.addEventListener('mouseenter', stopAutoplay);

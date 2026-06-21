@@ -132,12 +132,12 @@ h1, h2, h3 {
   align-items: center;
   justify-content: center;
 }
+
 /* ===================== Sobre (index) ===================== */
 .sobre-section {
   padding: 96px 0 80px;
   background: black;
 }
-
 
 .sobre-text {
   max-width: 640px;
@@ -203,6 +203,19 @@ h1, h2, h3 {
   margin: 0 auto;
   line-height: 1.7;
 }
+.artes-carousel-section .carousel .carousel-item {
+  width: 60vw; /* Ocupa 70% da largura da tela */
+  height: 78vh; /* Ocupa 60% da altura da tela */
+
+}
+
+/* Garante que a imagem preencha esse novo tamanho sem distorcer */
+.artes-carousel-section .carousel .carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px; /* Opção: deixa as bordas levemente arredondadas */
+}
 
 /* ===================== Artes — carrossel clássico ===================== */
 .artes-carousel-section {
@@ -213,7 +226,8 @@ h1, h2, h3 {
 
 .artes-carousel-section .carousel {
   width: 100%;
-  height: clamp(380px, 62vw, 640px);
+  /* ALTERADO: Aumentado de clamp(380px, 62vw, 640px) para proporções maiores */
+  height: clamp(480px, 75vw, 850px); 
 }
 
 .artes-carousel-section .carousel .carousel-item img {
@@ -223,7 +237,8 @@ h1, h2, h3 {
 }
 
 @media (max-width: 600px) {
-  .artes-carousel-section .carousel { height: clamp(300px, 90vw, 420px); }
+  /* ALTERADO: Aumentado de clamp(300px, 90vw, 420px) para telas menores */
+  .artes-carousel-section .carousel { height: clamp(350px, 95vw, 500px); }
 }
 
 /* Diamond-shaped indicators, colour-cycling through the palette */
@@ -321,7 +336,8 @@ h1, h2, h3 {
 
 .kobra-card .card-image {
   position: relative;
-  height: 260px;
+  /* ALTERADO: Aumentado de 260px para 360px para destacar mais as imagens */
+  height: 360px; 
   overflow: hidden;
 }
 
